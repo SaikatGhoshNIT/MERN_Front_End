@@ -1,6 +1,8 @@
 import React from "react";
+import { useState } from "react";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
   return (
     <>
       <div className="card flex items-center justify-center mt-[50px]">
