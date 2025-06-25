@@ -1,23 +1,57 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("golu.73@gmail.com");
+  const [password, setPassword] = useState("Golu@12345");
+
+  const handleLogin = async(e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:7777/login", {
+        email,
+        password,
+      });
+      if (response.status === 200) {
+        alert("Login successful!");
+        // Redirect to profile or home page
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Login failed. Please check your credentials.");
+    }
+  }
+
   return (
-    <>
-      <div className="card flex items-center justify-center mt-[50px]">
-        <div className="card-body bg-base-150 w-150 h-[64vh] shadow-sm items-center text-center">
-          <h2 className="card-title">Login Here</h2>
-          <div className="flex flex-col p-2 m-5">
-            <input type="text" placeholder="email" className="p-2 m-3 border-none rounded-lg w-[100%]" />
-            <input type="text" placeholder="password"  className="p-2 m-3 border-solid border-inherit rounded-lg w-[100%]" />
+    <div className="flex justify-center">
+      <div className="w-100 shadow-4xl bg-base-300 rounded-4xl p-5 mt-[70px]">
+        <div className="text-center">
+          <h2 className="font-bold text-2xl p-2 m-3">Login Here</h2>
+          <div className="flex flex-col p-2 m-5 items-center">
+            <label className="justify-center">Email ID: {email}</label>
+            <input
+              type="text"
+              placeholder="email"
+              className="p-2 m-3 border-none rounded-lg w-[100%]"
+              style={{ border: "1px-solid-black" }}
+              value={email}
+              onChange={(e)=> setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="password"
+              className="p-2 m-3 border-solid border-inherit rounded-lg w-[100%]"
+              value={password}
+              onChange={(e)=> setPassword(e.target.value)}
+            />
           </div>
-          <div className="card-actions">
-            <button className="btn btn-primary">Login</button>
+          <div className="p-2 m-5">
+            <button className="btn btn-primary" onClick={handleLogin}>Login</button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
