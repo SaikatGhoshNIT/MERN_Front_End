@@ -12,7 +12,11 @@ const Login = () => {
       const response = await axios.post("http://localhost:7777/login", {
         email,
         password,
-      });
+      },
+      {
+        withCredentials: true, // Include credentials in the request
+      }
+    );
       if (response.status === 200) {
         alert("Login successful!");
         // Redirect to profile or home page
