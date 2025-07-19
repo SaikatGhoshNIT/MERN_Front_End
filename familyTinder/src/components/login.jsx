@@ -1,10 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUser } from "../utils/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("golu.73@gmail.com");
   const [password, setPassword] = useState("Golu@12345");
+  const dispatch = useDispatch();
 
   const handleLogin = async(e) => {
     e.preventDefault();
@@ -21,6 +24,9 @@ const Login = () => {
         alert("Login successful!");
         // Redirect to profile or home page
       }
+      // Dispatch the user data to the Redux store
+      dispatch(setUser(response.data));
+      console.log("User data set in Redux store");
     } catch (error) {
       console.error("Login failed:", error);
       alert("Login failed. Please check your credentials.");
