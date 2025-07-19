@@ -3,7 +3,7 @@ import Body from "./components/Body";
 import Login from "./components/login";
 import Profile from "./components/profile";
 import {Provider} from "react-redux";
-import appStore from "./utils/appStore";
+import appStore from "../utils/appStore";
 
 
 function App() {
