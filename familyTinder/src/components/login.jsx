@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setUser } from "../utils/userSlice";
+import { setUser } from "../../utils/userSlice"; // Assuming you have a userSlice to manage user state
 
 const Login = () => {
   const [email, setEmail] = useState("golu.73@gmail.com");
