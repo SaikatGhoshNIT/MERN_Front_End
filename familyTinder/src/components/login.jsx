@@ -43,7 +43,7 @@ const Login = () => {
             <input
               type="text"
               placeholder="email"
-              className="p-2 m-3 border-none rounded-lg w-[100%]"
+              className="p-2 pl-3 m-3 border-none rounded-lg w-[100%] bg-base-100"
               style={{ border: "1px-solid-black" }}
               value={email}
               onChange={(e)=> setEmail(e.target.value)}
@@ -51,7 +51,7 @@ const Login = () => {
             <input
               type="password"
               placeholder="password"
-              className="p-2 m-3 border-solid border-inherit rounded-lg w-[100%]"
+              className="p-2 pl-3 m-3 border-none rounded-lg w-[100%] bg-base-100"
               value={password}
               onChange={(e)=> setPassword(e.target.value)}
             />
