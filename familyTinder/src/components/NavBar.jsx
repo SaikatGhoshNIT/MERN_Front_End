@@ -11,6 +11,7 @@ const NavBar = () => {
         </div>
         <div className="flex gap-2 mr-5">
           {user && <div className="dropdown dropdown-end">
+            <span>{user.firstName}</span>
             <div
               tabIndex={0}
               role="button"
