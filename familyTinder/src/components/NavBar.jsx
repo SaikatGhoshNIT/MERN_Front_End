@@ -9,7 +9,7 @@ const NavBar = () => {
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">Family Tinder</a>
         </div>
-        <span className="pl-[4px] m-[5px]">{user?.user?.firstName}</span>
+        <span className="pl-[4px] m-[10px] text-white font-bold">{user?.user?.firstName}</span>
         <div className="flex gap-2 mr-5">
           {user && <div className="dropdown dropdown-end">
             <div
