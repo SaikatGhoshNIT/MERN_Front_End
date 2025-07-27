@@ -3,11 +3,13 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../utils/userSlice"; // Assuming you have a userSlice to manage user state
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("golu.73@gmail.com");
   const [password, setPassword] = useState("Golu@12345");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async(e) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ const Login = () => {
       // Dispatch the user data to the Redux store
       dispatch(setUser(response.data));
       console.log("User data set in Redux store");
+      navigate("/"); // Navigate to the profile page after login
     } catch (error) {
       console.error("Login failed:", error);
       alert("Login failed. Please check your credentials.");
