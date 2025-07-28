@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { setUser } from '../../utils/userSlice' // Assuming you have a userSlice to manage user state
 import axios from 'axios'
 import { BASE_URL } from '../../utils/constants' // Import the base URL from constants
 
@@ -25,10 +26,9 @@ const Body = () => {
     }
   }
 
-
-
-
-
+  useEffect(() => {
+    fetchUser(); // Fetch user data when the component mounts
+  }, [dispatch]);
 
 
 
