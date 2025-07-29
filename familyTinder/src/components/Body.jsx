@@ -28,8 +28,7 @@ const Body = () => {
 
   useEffect(() => {
     fetchUser(); // Fetch user data when the component mounts
-  }, [dispatch]);
-
+  }, []);
 
 
   return (
