@@ -7,9 +7,12 @@ import { useDispatch } from 'react-redux'
 import { setUser } from '../../utils/userSlice' // Assuming you have a userSlice to manage user state
 import axios from 'axios'
 import { BASE_URL } from '../../utils/constants' // Import the base URL from constants
+import { useNavigate } from 'react-router-dom'
+import Error from './Error';
 
 const Body = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const fetchUser = async () => {
     try{
@@ -22,6 +25,12 @@ const Body = () => {
       }
     }
     catch (error) {
+      if (error.response.status === 403) {
+        navigate("/login");
+      }
+      else{
+        return(<Error/>); // Render an error component if the request fails
+      }
       console.error("Error fetching user data:", error);
     }
   }
