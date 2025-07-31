@@ -10,11 +10,13 @@ import { BASE_URL } from '../../utils/constants' // Import the base URL from con
 import { useNavigate } from 'react-router-dom'
 import Error from './Error';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [hasError, setHasError] = useState(false);
+  const user = useSelector((state) => state.user); // Assuming you have a user state in Redux
 
   const fetchUser = async () => {
     try{
@@ -38,7 +40,10 @@ const Body = () => {
   }
 
   useEffect(() => {
-    fetchUser(); // Fetch user data when the component mounts
+    if (!user) {
+     fetchUser();
+    }
+    // Fetch user data when the component mounts
   }, []);
 
 
