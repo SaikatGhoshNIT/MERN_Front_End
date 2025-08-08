@@ -9,6 +9,9 @@ import { BASE_URL } from "../../utils/constants"; // Import the base URL from co
 const Login = () => {
   const [email, setEmail] = useState("golu.73@gmail.com");
   const [password, setPassword] = useState("Golu@12345");
+  const [error, setError] = useState(null);
+
+  // Redux hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,7 +36,10 @@ const Login = () => {
       navigate("/"); // Navigate to the profile page after login
     } catch (error) {
       console.error("Login failed:", error);
-      alert("Login failed. Please check your credentials.");
+      //alert("Login failed. Please check your credentials.");
+      if(error.response.status === 403) {
+        setError("Invalid email or password!!!");
+      }
     }
   }
 
@@ -59,6 +65,7 @@ const Login = () => {
               value={password}
               onChange={(e)=> setPassword(e.target.value)}
             />
+            <p className="text-red-400">{error}</p>
           </div>
           <div className="p-2 m-5">
             <button className="btn btn-primary" onClick={handleLogin}>Login</button>
