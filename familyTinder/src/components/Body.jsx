@@ -7,14 +7,14 @@ import { useDispatch } from 'react-redux'
 import { setUser } from '../../utils/userSlice' // Assuming you have a userSlice to manage user state
 import axios from 'axios'
 import { BASE_URL } from '../../utils/constants' // Import the base URL from constants
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 import Error from './Error';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const Body = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [hasError, setHasError] = useState(false);
   const user = useSelector((state) => state.user); // Assuming you have a user state in Redux
 
@@ -30,7 +30,7 @@ const Body = () => {
     }
     catch (error) {
       if (error.response.status === 403) {
-        navigate("/login");
+        //navigate("/login");
       }
       else{
         setHasError(true) // Render an error component if the request fails
@@ -52,7 +52,7 @@ const Body = () => {
     // Render the main layout with NavBar, Outlet, and Footer
     <div className='flex flex-col min-h-screen'>
         <NavBar/>
-        <Outlet/>
+        {hasError ===true ? <Error/> : <Outlet/>}
         <Footer/>
     </div>
   )

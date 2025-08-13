@@ -5,8 +5,10 @@ import { removeUser} from "../../utils/userSlice";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../utils/constants"; // Import the base URL from constants
+import { useState, useEffect } from "react";
 
 const NavBar = () => {
+  const [isVisible, setIsVisible] = useState(true);
   const user = useSelector((state) => state.user); 
   const dispatch = useDispatch();
 
@@ -23,12 +25,23 @@ const NavBar = () => {
     }
   }
 
+  useEffect(() => {
+    if (user === null || Object.keys(user).length === 0) {
+      setIsVisible(true); // Show button when user is not logged in
+    } else {
+      setIsVisible(false); // Hide button when user is logged in
+    }
+  }, [user]);
+
   return (
     <>
       <div className="navbar bg-base-300 shadow-sm w-full">
         <div className="flex-1">
           <Link to="/" className="btn btn-ghost text-xl">Family Tinder</Link>
         </div>
+        <Link to="/login">
+              <button className={`p-[3px] m-0.5 text-center bg-emerald-400 ${isVisible === false ? 'hidden' : ''}`}>Login/Sign-in</button>
+        </Link>
         <span className="pl-[4px] m-[10px] text-white font-bold">{user?.user?.firstName ? user?.user?.firstName : user?.firstName}</span>
         <div className="flex gap-2 mr-5">
           {user && <div className="dropdown dropdown-end">
